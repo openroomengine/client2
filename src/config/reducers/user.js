@@ -1,6 +1,4 @@
-const initial = {
-  path: null,
-}
+const initial = {}
 
 export default (userState = initial, action) => {
   switch (action.type) {

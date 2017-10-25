@@ -21,10 +21,9 @@ export default class LinkContainer extends React.Component {
 
     return (
       <a
-        // href={}
+        href={to}
         onClick={this.handleClick}
       >
-        {to}
         {children}
       </a>
     )
