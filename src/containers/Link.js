@@ -17,12 +17,13 @@ export default class LinkContainer extends React.Component {
   }
 
   render () {
-    const {children, to} = this.props
+    const {children, to, ...rest} = this.props
 
     return (
       <a
         href={to}
         onClick={this.handleClick}
+        {...rest}
       >
         {children}
       </a>

@@ -29,8 +29,9 @@ export default class AppContainer extends React.Component {
 
     return (
       <div>
-        <Navigation/>
-        <Page/>
+        <aside><Navigation/></aside>
+        <main style={{marginLeft: '5rem'}}><Page/></main>
+
       </div>
     )
   }
