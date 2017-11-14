@@ -1,4 +1,6 @@
-const initial = {}
+const initial = {
+  role: 'visitor',
+}
 
 export default (userState = initial, action) => {
   switch (action.type) {

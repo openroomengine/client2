@@ -10,6 +10,7 @@ const locations = [
   {
     label: 'login',
     pattern: '/login',
+    sidebar: false,
   },
   {
     label: 'dashboard',
@@ -42,6 +43,7 @@ const parseLocation = (loc) => {
     keys: keys.length ? keys : null,
     resolve: loc.pattern ? pathRegex.compile(loc.pattern) : null,
     page: loc.page || loc.label,
+    sidebar: loc.sidebar !== false, // undefined, true → true
     error: !!loc.error,
   }
 }

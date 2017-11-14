@@ -5,6 +5,7 @@ import Link from '../containers/Link.js'
 const liStyle = {
   padding: '0.5rem',
   lineHeight: '1em',
+  width: '1em',
 }
 
 const aStyle = {
@@ -26,9 +27,11 @@ const NavigationComponent = (props) => (
       margin: 0,
       listStyleType: 'none',
       textAlign: 'center',
+      // position: 'absolute',
     }}>
       <li style={liStyle}><Link to="/dashboard" style={aStyle}>D</Link></li>
       <li style={liStyle}><Link to="/rooms" style={aStyle}>R</Link></li>
+      <li style={{...liStyle, position: 'absolute', bottom: '0'}}><span style={{color: '#eee'}}>L</span></li>
     </ul>
   </nav>
 )

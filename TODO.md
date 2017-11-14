@@ -6,3 +6,12 @@
 - access control
 
 ## Long term
+- consider preprocessing graphql queries (info: https://github.com/apollographql/graphql-tag)
+
+## Apollo notes
+- `options: {errorPolicy: all}` → error prop in case of graphql error
+
+## Access control flow
+- no right to view page
+  - visitor: show login page
+  - rest: show message access not allowed

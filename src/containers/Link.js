@@ -17,7 +17,7 @@ export default class LinkContainer extends React.Component {
   }
 
   render () {
-    const {children, to, ...rest} = this.props
+    const {children, to, changePath, ...rest} = this.props
 
     return (
       <a
