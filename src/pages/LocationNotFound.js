@@ -1,7 +1,8 @@
+// replacement when page is absent because location (defined in ../config/locations.js) does not exists
 import React from 'react'
 
-import Page from '../components/Page.js'
-import PageTitle from '../components/PageTitle.js'
+import Page from '../styles/Page.js'
+import PageTitle from '../styles/PageTitle.js'
 
 const LocationNotFoundPage = () =>
   <Page name="locationNotFound">

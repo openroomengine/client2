@@ -5,3 +5,4 @@ dist/*
 !dist/favicon.ico
 
 COMMIT.md
+THOUGHTS.md

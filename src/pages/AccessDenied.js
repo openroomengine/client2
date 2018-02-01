@@ -1,8 +1,9 @@
+// replacement for page that cannot be viewed with certain permissions
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Page from '../components/Page.js'
-import PageTitle from '../components/PageTitle.js'
+import Page from '../styles/Page.js'
+import PageTitle from '../styles/PageTitle.js'
 
 const AccessDenied = () =>
   <Page name="pageAccessDenied">

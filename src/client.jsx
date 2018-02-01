@@ -16,24 +16,3 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById('app')
 )
-
-// fetch('http://localhost:8080/graphql', {
-//   method: 'POST',
-//   headers: new Headers({
-//     'Content-Type': 'application/json',
-//   }),
-//   credentials: 'include',
-//   body: JSON.stringify(
-//     {
-//       'query': `mutation {
-//         createSession(username: "Bruno", password: "Derp") {
-//           username
-//         }
-//       }`,
-//       'variables': null,
-//       'operationName': null,
-//     }
-//   ),
-// }).then(() => {
-//   console.log(document.cookie)
-// })

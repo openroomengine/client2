@@ -1,7 +1,8 @@
+// replacement when page does not exist (file not present in ../pages or entry not in array ../containers/App.js)
 import React from 'react'
 
-import Page from '../components/Page.js'
-import PageTitle from '../components/PageTitle.js'
+import Page from '../styles/Page.js'
+import PageTitle from '../styles/PageTitle.js'
 
 const PageNotFoundPage = () =>
   <Page name="pageNotFound">

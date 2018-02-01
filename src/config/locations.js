@@ -1,5 +1,7 @@
 import pathRegex from 'path-to-regexp'
 import createHistory from 'history/createBrowserHistory'
+import isAuth from '../helpers/isAuth.js'
+import camelCase from '../helpers/camelCase.js'
 
 // definitions
 const locations = [
@@ -8,26 +10,25 @@ const locations = [
     redirect: '/dashboard',
   },
   {
-    label: 'login',
     pattern: '/login',
+    page: 'login',
     sidebar: false,
   },
   {
-    label: 'dashboard',
     pattern: '/dashboard',
+    page: 'dashboard',
   },
   {
-    label: 'rooms',
     pattern: '/rooms',
+    page: 'rooms',
   },
   {
-    label: 'room',
     pattern: '/rooms/:room',
+    page: 'room',
   },
 ]
 
 const locationNotFound = {
-  label: 'locationNotFound',
   error: true,
 }
 
@@ -36,13 +37,12 @@ const parseLocation = (loc) => {
   let keys = []
 
   return {
-    label: loc.label || null,
     pattern: loc.path || null,
     redirect: loc.redirect || null,
     regex: loc.pattern ? pathRegex(loc.pattern, keys) : null,
     keys: keys.length ? keys : null,
     resolve: loc.pattern ? pathRegex.compile(loc.pattern) : null,
-    page: loc.page || loc.label,
+    page: loc.page,
     sidebar: loc.sidebar !== false, // undefined, true → true
     error: !!loc.error,
   }
@@ -64,17 +64,33 @@ const getLocation = (path) => {
   }
 
   // 404
-  return {
-    ...parsedLocationNotFound,
-    path,
-  }
+  return null
 }
 
+const getNotFound = (path) => ({
+  ...parsedLocationNotFound,
+  path,
+})
+
 // resolve (get location, following redirects)
-const resolve = (path) => {
+// input → store
+const resolve = (path, user) => {
   const location = getLocation(path)
 
-  return location.redirect ? resolve(location.redirect) : location
+  // location not found
+  if (!location) return getNotFound(path)
+
+  // redirect
+  else if (location.redirect) return resolve(location.redirect, user)
+
+  // redirect to login (visitor (role) insufficient permissions)
+  else if (
+    user.role === 'visitor' &&
+    !isAuth(camelCase('page', location.page), user)
+  ) return getLocation('/login')
+
+  // final location, sufficient permissions
+  else return location
 }
 
 export {

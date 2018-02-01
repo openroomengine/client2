@@ -15,11 +15,12 @@ const addressBarToPath = (store) => {
   })
 }
 
-const pathToAddressBar = (next, action) => {
+const pathToAddressBar = (store, next, action) => {
   // listen for CHANGE_PATH
   if (action.type === CHANGE_PATH) {
     const addressBar = history.location.pathname
-    const {path} = resolve(action.payload)
+    const {user} = store.getState()
+    const {path} = resolve(action.payload, user)
 
     // propagate action
     // NOTE: will probably break if extra properties are added to CHANGE_PATH
@@ -36,5 +37,5 @@ const pathToAddressBar = (next, action) => {
 export default (store) => {
   addressBarToPath(store)
 
-  return (next) => (action) => pathToAddressBar(next, action)
+  return (next) => (action) => pathToAddressBar(store, next, action)
 }

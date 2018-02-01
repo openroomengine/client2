@@ -2,7 +2,9 @@ import {CHANGE_PATH} from '../../actions/types.js'
 import {resolve, history} from '../locations.js'
 
 // get path from address bar (follow redirects)
-const initial = resolve(history.location.pathname).path
+// NOTE: What is initial user state? How do I get it here?
+const user = {role: 'visitor'}
+const initial = resolve(history.location.pathname, user).path
 
 // redirect: update address bar
 if (initial !== history.location.pathname) history.push(initial)
